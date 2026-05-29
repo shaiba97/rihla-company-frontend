@@ -6,14 +6,14 @@ if (!apiUrl) {
   process.exit(0);
 }
 
-const wsUrl = apiUrl.replace(/\/api$/, '');
+const base = apiUrl.replace(/\/api$/, '');
 const env = `export const environment = {
   production: true,
   apiUrl: {
-    company:  '${apiUrl}',
-    customer: '${apiUrl}',
+    company:  '${base}/api-company',
+    customer: '${base}/api-customer',
   },
-  wsUrl: '${wsUrl}',
+  wsUrl: '${base}',
 };
 `;
 
