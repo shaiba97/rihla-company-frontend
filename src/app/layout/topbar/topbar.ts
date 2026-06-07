@@ -29,6 +29,7 @@ export class TopbarComponent {
     '/tickets':    { title: 'التذاكر' },
     '/bookings':   { title: 'الحجوزات' },
     '/financials': { title: 'التقارير المالية' },
+    '/payout':     { title: 'المدفوعات' },
     '/profile':    { title: 'الملف الشخصي' },
   };
 

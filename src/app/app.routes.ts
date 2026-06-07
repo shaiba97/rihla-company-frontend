@@ -57,6 +57,12 @@ export const routes: Routes = [
             .then(m => m.FinancialsComponent),
       },
       {
+        path: 'payout',
+        loadComponent: () =>
+          import('./pages/payout/payout/payout')
+            .then(m => m.PayoutComponent),
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile/profile')

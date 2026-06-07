@@ -28,6 +28,7 @@ export class LayoutComponent {
     { path: '/buses',      label: 'الحافلات', icon: 'bus' },
     { path: '/trips',      label: 'الرحلات',  icon: 'route' },
     { path: '/financials', label: 'المالية',  icon: 'wallet' },
+    { path: '/payout',     label: 'المدفوعات', icon: 'wallet' },
     { path: '/profile',    label: 'الشخصية',  icon: 'user' },
   ];
 }
