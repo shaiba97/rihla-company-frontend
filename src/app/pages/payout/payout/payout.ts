@@ -1,12 +1,12 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import { LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideCalendar, LucideBadgeCheck, LucideX, LucideBan } from '@lucide/angular';
+import { LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan } from '@lucide/angular';
 import { PayoutService, PayoutTrip, PayoutRequest, PayoutRecord } from '../../../core/services/payout/payout.service';
 import { toArabicNumerals, formatArabicDate } from '../../../pipes/arabic-number/arabic-number.util';
 
 @Component({
   selector: 'app-payout',
   standalone: true,
-  imports: [LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideCalendar, LucideBadgeCheck, LucideX, LucideBan],
+  imports: [LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan],
   templateUrl: './payout.html',
 })
 export class PayoutComponent implements OnInit {
