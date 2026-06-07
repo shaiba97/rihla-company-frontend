@@ -77,6 +77,25 @@
         </div>
       </div>
 
+      <!-- PAYOUT ROW -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="flex flex-col gap-1.5 p-3 rounded-2xl border bg-[var(--bg-card)]" (click)="goTo('/payout')">
+          <div class="w-7 h-7 rounded-lg bg-[var(--warning-light)] flex items-center justify-center"><svg lucideWallet class="w-3.5 h-3.5 text-[var(--warning)]"></svg></div>
+          <span class="text-[9px] font-medium text-[var(--text-muted)]">مستحقات</span>
+          <span class="text-sm font-extrabold text-[var(--text-primary)] tabular-nums">{{ fmt(payoutStats()?.totalUnpaidAmount ?? 0) }} ج</span>
+        </div>
+        <div class="flex flex-col gap-1.5 p-3 rounded-2xl border bg-[var(--bg-card)]" (click)="goTo('/payout')">
+          <div class="w-7 h-7 rounded-lg bg-[var(--success-light)] flex items-center justify-center"><svg lucideCheckCircle class="w-3.5 h-3.5 text-[var(--success)]"></svg></div>
+          <span class="text-[9px] font-medium text-[var(--text-muted)]">مدفوع</span>
+          <span class="text-sm font-extrabold text-[var(--text-primary)] tabular-nums">{{ fmt(payoutStats()?.totalPaidAmount ?? 0) }} ج</span>
+        </div>
+        <div class="flex flex-col gap-1.5 p-3 rounded-2xl border bg-[var(--bg-card)]" (click)="goTo('/payout')">
+          <div class="w-7 h-7 rounded-lg bg-[var(--info-light)] flex items-center justify-center"><svg lucideClock class="w-3.5 h-3.5 text-[var(--info)]"></svg></div>
+          <span class="text-[9px] font-medium text-[var(--text-muted)]">طلبات معلقة</span>
+          <span class="text-sm font-extrabold text-[var(--text-primary)] tabular-nums">{{ toArabic(payoutStats()?.pendingRequestCount ?? 0) }}</span>
+        </div>
+      </div>
+
       <!-- Upcoming trips -->
       <div class="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] overflow-hidden">
         <div class="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
@@ -169,6 +188,49 @@
           </div>
         </div>
       }
+    </div>
+
+    <!-- DESKTOP PAYOUT ROW -->
+    <div class="hidden md:grid grid-cols-3 gap-4">
+      <div class="flex flex-col gap-3 p-4 rounded-2xl border bg-[var(--bg-card)] cursor-pointer hover:border-[var(--primary)] transition-all group" (click)="goTo('/payout')">
+        <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-xl bg-[var(--warning-light)] flex items-center justify-center"><svg lucideWallet class="w-5 h-5 text-[var(--warning)]"></svg></div>
+          <svg lucideArrowLeft class="w-4 h-4 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity"></svg>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[11px] font-medium text-[var(--text-muted)]">مستحقات غير مدفوعة</span>
+          <div class="flex items-baseline gap-1">
+            <span class="text-xl font-extrabold text-[var(--text-primary)] tabular-nums">{{ fmt(payoutStats()?.totalUnpaidAmount ?? 0) }}</span>
+            <span class="text-[10px] font-medium text-[var(--text-muted)]">ج</span>
+          </div>
+          <span class="text-[10px] text-[var(--text-secondary)]">بانتظار الصرف</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 p-4 rounded-2xl border bg-[var(--bg-card)] cursor-pointer hover:border-[var(--primary)] transition-all group" (click)="goTo('/payout')">
+        <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-xl bg-[var(--success-light)] flex items-center justify-center"><svg lucideCheckCircle class="w-5 h-5 text-[var(--success)]"></svg></div>
+          <svg lucideArrowLeft class="w-4 h-4 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity"></svg>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[11px] font-medium text-[var(--text-muted)]">المدفوع</span>
+          <div class="flex items-baseline gap-1">
+            <span class="text-xl font-extrabold text-[var(--text-primary)] tabular-nums">{{ fmt(payoutStats()?.totalPaidAmount ?? 0) }}</span>
+            <span class="text-[10px] font-medium text-[var(--text-muted)]">ج</span>
+          </div>
+          <span class="text-[10px] text-[var(--text-secondary)]">إجمالي المبالغ المدفوعة</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 p-4 rounded-2xl border bg-[var(--bg-card)] cursor-pointer hover:border-[var(--primary)] transition-all group" (click)="goTo('/payout')">
+        <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-xl bg-[var(--info-light)] flex items-center justify-center"><svg lucideClock class="w-5 h-5 text-[var(--info)]"></svg></div>
+          <svg lucideArrowLeft class="w-4 h-4 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity"></svg>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[11px] font-medium text-[var(--text-muted)]">طلبات الصرف</span>
+          <span class="text-xl font-extrabold text-[var(--text-primary)] tabular-nums">{{ toArabic(payoutStats()?.pendingRequestCount ?? 0) }}</span>
+          <span class="text-[10px] text-[var(--text-secondary)]">بانتظار المراجعة</span>
+        </div>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">

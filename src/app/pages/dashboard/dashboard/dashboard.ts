@@ -7,12 +7,12 @@ import { PayoutService } from '../../../core/services/payout/payout.service';
 import { TripService, Trip } from '../../../core/services/trip';
 import { BusService, Bus } from '../../../core/services/bus';
 import { ArabicNumberPipe } from '../../../pipes/arabic-number/arabic-number-pipe';
-import { LucideTrendingUp, LucideWallet, LucideTicket, LucideBus, LucideRoute, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideArrowLeft, LucideBarChart3, LucideUsers } from '@lucide/angular';
+import { LucideTrendingUp, LucideWallet, LucideTicket, LucideBus, LucideRoute, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideArrowLeft, LucideBarChart3, LucideUsers, LucideCheckCircle, LucideClock } from '@lucide/angular';
 import { WsService } from '../../../core/services/ws.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DatePipe, ArabicNumberPipe, LucideTrendingUp, LucideWallet, LucideTicket, LucideBus, LucideRoute, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideArrowLeft, LucideBarChart3, LucideUsers],
+  imports: [DatePipe, ArabicNumberPipe, LucideTrendingUp, LucideWallet, LucideTicket, LucideBus, LucideRoute, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideArrowLeft, LucideBarChart3, LucideUsers, LucideCheckCircle, LucideClock],
   templateUrl: './dashboard.html',
 })
 export class DashboardComponent implements OnInit, OnDestroy {
@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   goToTrip(id: string) { this.router.navigate(['trips/trip/trip-details', id]); }
   goToTrips() { this.router.navigate(['/trips']); }
   goToFinancials() { this.router.navigate(['/financials']); }
+  goTo(path: string) { this.router.navigate([path]); }
 
   methodLabel(m: string): string {
     return { bankak: 'بنكك', fawry: 'فوري', mashriq: 'المشرق', bravo: 'برافو' }[m] ?? m;
