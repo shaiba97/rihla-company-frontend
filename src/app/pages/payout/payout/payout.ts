@@ -141,15 +141,22 @@ export class PayoutComponent implements OnInit, OnDestroy {
     this.editingAccount.update(v => !v);
   }
 
+  successMsg = signal('');
+
   saveAccount(): void {
     this.savingAccount.set(true);
+    this.error.set('');
+    this.successMsg.set('');
     this.svc.updateAccount(this.accountForm()).subscribe({
       next: r => {
         this.account.set(r.data);
+        this.accountForm.set({ ...r.data });
         this.savingAccount.set(false);
         this.editingAccount.set(false);
+        this.successMsg.set('تم حفظ بيانات الحساب بنجاح');
+        setTimeout(() => this.successMsg.set(''), 3000);
       },
-      error: () => { this.savingAccount.set(false); },
+      error: e => { this.savingAccount.set(false); this.error.set(e?.error?.message ?? 'فشل حفظ بيانات الحساب'); },
     });
   }
 }

@@ -44,6 +44,12 @@
           {{ editingAccount() ? 'إلغاء' : 'تحديث' }}
         </button>
       </div>
+      @if (error() && editingAccount()) {
+        <div class="mx-5 mt-3 px-4 py-2.5 rounded-xl bg-[var(--danger-light)] border border-red-200 text-sm font-medium text-[var(--danger)]">{{ error() }}</div>
+      }
+      @if (successMsg()) {
+        <div class="mx-5 mt-3 px-4 py-2.5 rounded-xl bg-[var(--success-light)] border border-green-200 text-sm font-medium text-[var(--success)]">{{ successMsg() }}</div>
+      }
       @if (editingAccount()) {
         <div class="p-5 flex flex-col gap-4">
           <div>
