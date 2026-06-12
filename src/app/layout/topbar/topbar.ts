@@ -2,7 +2,7 @@ import { Component, output, inject, computed, signal, HostListener, OnInit, OnDe
 import { Router, NavigationEnd } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs/operators';
-import { LucideLayoutDashboard, LucideBus, LucideRoute, LucideTicket, LucideCalendar, LucideWallet, LucideUser, LucideBell, LucideBellOff, LucideSun, LucideMoon, LucideLogOut, LucideMenu, LucideChevronDown, LucideCheck, LucideX } from '@lucide/angular';
+import { LucideLayoutDashboard, LucideBus, LucideRoute, LucideTicket, LucideCalendar, LucideWallet, LucideUser, LucideBell, LucideBellOff, LucideSun, LucideMoon, LucideLogOut, LucideMenu, LucideChevronDown } from '@lucide/angular';
 import { ThemeService } from '../../core/services/theme';
 import { AuthService } from '../../core/services/auth';
 import { WsService } from '../../core/services/ws.service';
@@ -12,7 +12,7 @@ import { toArabicNumerals, formatArabicDate } from '../../pipes/arabic-number/ar
 @Component({
   selector:    'app-topbar',
   standalone:  true,
-  imports:     [LucideLayoutDashboard, LucideBus, LucideRoute, LucideTicket, LucideCalendar, LucideWallet, LucideUser, LucideBell, LucideBellOff, LucideSun, LucideMoon, LucideLogOut, LucideMenu, LucideChevronDown, LucideCheck, LucideX],
+  imports:     [LucideLayoutDashboard, LucideBus, LucideRoute, LucideTicket, LucideCalendar, LucideWallet, LucideUser, LucideBell, LucideBellOff, LucideSun, LucideMoon, LucideLogOut, LucideMenu, LucideChevronDown],
   templateUrl: './topbar.html',
 })
 export class TopbarComponent implements OnInit, OnDestroy {
