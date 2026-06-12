@@ -1,5 +1,5 @@
 import { Component, signal, inject, OnInit, OnDestroy } from '@angular/core';
-import { LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan } from '@lucide/angular';
+import { LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan, LucideEye } from '@lucide/angular';
 import { PayoutService, PayoutTrip, PayoutRequest, PayoutRecord } from '../../../core/services/payout/payout.service';
 import { WsService } from '../../../core/services/ws.service';
 import { toArabicNumerals, formatArabicDate } from '../../../pipes/arabic-number/arabic-number.util';
@@ -7,7 +7,7 @@ import { toArabicNumerals, formatArabicDate } from '../../../pipes/arabic-number
 @Component({
   selector: 'app-payout',
   standalone: true,
-  imports: [LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan],
+  imports: [LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideMapPin, LucideCheck, LucideClock, LucideSend, LucideArrowLeft, LucideFileText, LucideLandmark, LucideBadgeCheck, LucideX, LucideBan, LucideEye],
   templateUrl: './payout.html',
 })
 export class PayoutComponent implements OnInit, OnDestroy {
@@ -24,6 +24,7 @@ export class PayoutComponent implements OnInit, OnDestroy {
   error = signal('');
   requestingTrip = signal<string | null>(null);
   requestingAll = signal(false);
+  viewingReceipt = signal<string | null>(null);
 
   ngOnInit() {
     this.load();
@@ -106,4 +107,21 @@ export class PayoutComponent implements OnInit, OnDestroy {
   toArabic(n: number | string): string { return toArabicNumerals(n); }
   fmtDate(d: string): string { return formatArabicDate(d); }
   fmtPrice(n: number): string { return `${toArabicNumerals(n)} ج.س`; }
+
+  getReceiptForTrip(tripId: string): string | null {
+    for (const rec of this.history()) {
+      if (rec.receiptFile && rec.items.some(item => item.trip.id === tripId)) {
+        return rec.receiptFile;
+      }
+    }
+    return null;
+  }
+
+  viewReceipt(url: string): void {
+    this.viewingReceipt.set(url);
+  }
+
+  closeReceipt(): void {
+    this.viewingReceipt.set(null);
+  }
 }

@@ -27,8 +27,9 @@ export interface PayoutRecord {
   id: string;
   amount: number;
   note?: string;
+  receiptFile?: string;
   createdAt: string;
-  items: { trip: { fromCity: string; toCity: string } }[];
+  items: { trip: { id: string; fromCity: string; toCity: string } }[];
 }
 
 export interface PayoutDashboardStats {
