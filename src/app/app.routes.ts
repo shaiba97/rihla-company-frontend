@@ -69,6 +69,12 @@ export const routes: Routes = [
       },
       { path: 'payout', redirectTo: 'financials/payout', pathMatch: 'full' },
       {
+        path: 'notifications',
+        loadComponent: () =>
+          import('./pages/notifications/notifications/notifications')
+            .then(m => m.NotificationsComponent),
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile/profile')
