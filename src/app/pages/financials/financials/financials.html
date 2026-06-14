@@ -23,15 +23,11 @@
         @switch (tab.icon) {
           @case ('activity') { <svg lucideActivity class="w-3.5 h-3.5"></svg> }
           @case ('bar-chart') { <svg lucideBarChart3 class="w-3.5 h-3.5"></svg> }
+          @case ('circle-dollar-sign') { <svg lucideCircleDollarSign class="w-3.5 h-3.5"></svg> }
         }
         {{ tab.label }}
       </button>
     }
-    <a routerLink="/financials/payout" routerLinkActive="border-[var(--primary)] text-[var(--text-primary)]"
-       class="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border-b-2 transition-all duration-150 whitespace-nowrap border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]">
-      <svg lucideArrowLeft class="w-3.5 h-3.5"></svg>
-      المدفوعات
-    </a>
   </div>
 
   @if (isLoading()) {
@@ -200,5 +196,9 @@
       }
     </div>
     }
+  }
+
+  @if (activeTab() === 'payout') {
+    <app-payout></app-payout>
   }
 </div>

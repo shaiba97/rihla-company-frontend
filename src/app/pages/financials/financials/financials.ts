@@ -1,12 +1,12 @@
 import { Component, signal, inject, OnInit, computed } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
-import { LucideTrendingUp, LucideWallet, LucideBanknote, LucideTicket, LucideClock, LucideMapPin, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideBarChart3, LucideArrowLeft, LucideActivity } from '@lucide/angular';
+import { LucideTrendingUp, LucideWallet, LucideBanknote, LucideTicket, LucideClock, LucideMapPin, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideBarChart3, LucideActivity, LucideCircleDollarSign } from '@lucide/angular';
 import { FinancialsService, FinancialSummary } from '../../../core/services/financials/financials.service';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexGrid, ApexTooltip, ApexDataLabels, ApexFill } from 'ng-apexcharts';
+import { PayoutComponent } from '../../payout/payout/payout';
 
-export type Tab = 'overview' | 'performance';
+export type Tab = 'overview' | 'performance' | 'payout';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -23,7 +23,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [NgClass, RouterLink, RouterLinkActive, ChartComponent, LucideTrendingUp, LucideWallet, LucideTicket, LucideClock, LucideMapPin, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideBarChart3, LucideArrowLeft, LucideActivity],
+  imports: [NgClass, ChartComponent, LucideTrendingUp, LucideWallet, LucideTicket, LucideClock, LucideMapPin, LucideLoaderCircle, LucideAlertCircle, LucideRefreshCw, LucideCalendar, LucideBarChart3, LucideActivity, LucideCircleDollarSign, PayoutComponent],
   templateUrl: './financials.html',
 })
 export class FinancialsComponent implements OnInit {
@@ -35,6 +35,7 @@ export class FinancialsComponent implements OnInit {
   tabs = [
     { id: 'overview' as Tab, label: 'نظرة عامة', icon: 'activity' },
     { id: 'performance' as Tab, label: 'الأداء المالي', icon: 'bar-chart' },
+    { id: 'payout' as Tab, label: 'المدفوعات', icon: 'circle-dollar-sign' },
   ];
 
   switchTab(tab: Tab) {
